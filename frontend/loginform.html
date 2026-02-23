@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <form id="loginform" action="/index" method="GET">
+
+            <label>Login Using:</label><br>
+            <input type="radio" id="loginUsername" name="loginType" value="username" checked>
+            <label for="loginUsername">Username</label>
+
+            <input type="radio" id="loginEmail" name="loginType" value="email">
+            <label for="loginEmail">Email</label><br><br>
+
+            <label for="userinput">Username:</label><br>
+            <input type="text" id="userinput" name="userinput" required><br><br>
+
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password" required><br><br>
+
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <script>
+        const loginUsername = document.getElementById("loginUsername");
+        const loginEmail = document.getElementById("loginEmail");
+        const userinput = document.getElementById("userinput");
+        const label = document.querySelector("label[for='userinput']");
+
+        loginUsername.addEventListener("change", () => {
+            userinput.type = "text";
+            userinput.placeholder = "";
+            userinput.value = "";
+            userinput.removeAttribute("pattern");
+            label.innerHTML = "Username:";
+        });
+
+        loginEmail.addEventListener("change", () => {
+            userinput.type = "email";
+            userinput.placeholder = "";
+            userinput.value = "";
+            userinput.setAttribute("pattern", "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
+            label.innerHTML = "Email:";
+        });
+    </script>
+
+    <script src="script.js"></script>
+</body>
+</html>
